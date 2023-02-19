@@ -1,22 +1,22 @@
-// <TODO: your plugin code here - you can base it on the code below, but you don't have to>
+import { GraphQLClient } from 'graphql-request'
+import { gql } from 'graphql-tag'
 
-// Some internal library function
-async function getRandomNumber() {
-    return 4
-}
+export function processEvent(event, meta) {
+    const endpoint = meta.config.hasura_url
+    const apiSecret = meta.config.hasura_secret
+    const client = new GraphQLClient(endpoint, { headers: { 'x-hasura-admin-secret': apiSecret } })
 
-// Plugin method that runs on plugin load
-export async function setupPlugin({ config }) {
-    console.log(`Setting up the plugin`)
-}
+    const mutation = gql`
+      mutation insertEvent($object: posthog_event_insert_input = {}) {
+        insert_posthog_event_one(object: $object) {
+          id
+        }
+      }`
 
-// Plugin method that processes event
-export async function processEvent(event, { config, cache }) {
-    const counterValue = (await cache.get('greeting_counter', 0))
-    cache.set('greeting_counter', counterValue + 1)
-    if (!event.properties) event.properties = {}
-    event.properties['greeting'] = config.greeting
-    event.properties['greeting_counter'] = counterValue
-    event.properties['random_number'] = await getRandomNumber()
+    // Some events (like $identify) don't have properties
+    if (event.properties) {
+        console.log(event)
+    }
+    // Return the event to ingest, return nothing to discard
     return event
 }

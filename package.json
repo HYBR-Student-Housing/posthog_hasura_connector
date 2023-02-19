@@ -1,0 +1,23 @@
+{
+  "name": "posthog_hasura_connector",
+  "version": "1.0.0",
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HYBR-Student-Housing/posthog_hasura_connector.git"
+  },
+  "author": "Abe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HYBR-Student-Housing/posthog_hasura_connector/issues"
+  },
+  "homepage": "https://github.com/HYBR-Student-Housing/posthog_hasura_connector#readme",
+  "dependencies": {
+    "graphql-request": "^5.1.0",
+    "graphql-tag": "^2.12.6"
+  }
+}

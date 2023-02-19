@@ -1,19 +1,28 @@
 {
-    "name": "<TODO: your plugin name>",
-    "url": "<TODO: Your Plugin URL here>",
-    "description": "<TODO: Your Plugin description here>",
+    "name": "Log Event in Hasura",
     "main": "index.js",
-    "posthogVersion": ">= 1.25.0",
+    "posthogVersion": ">= 1.40.0",
     "config": [
         {
-            "markdown": "<TODO: your plugin config, remove if none>"
+            "markdown": "Specify your config here"
         },
         {
-            "key": "greeting",
-            "name": "What greeting would you like to use?",
+            "key": "hasura_url",
+            "name": "Hasura Endpoint",
             "type": "string",
-            "default": "Hello World!",
-            "required": false
+            "hint": "Used to connect to your hasura instance",
+            "default": "",
+            "required": true
+        },
+        {
+            "key": "hasura_secret",
+            "name": "Hasura Secret",
+            "type": "string",
+            "hint": "Used to connect to your hasura instance",
+            "default": "",
+            "required": true,
+            "secret": true
         }
-    ]
+    ],
+    
 }
